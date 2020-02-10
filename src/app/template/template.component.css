@@ -1,0 +1,7 @@
+.ng-touched {
+    background-color: green;
+}
+
+.ng-dirty {
+    color:blue;
+}
