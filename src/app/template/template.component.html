@@ -1,0 +1,17 @@
+<form novalidate #formulario="ngForm" (ngSubmit)="manejarSubmit(formulario.value)">
+    <label>Nombre</label>
+    <input type="text" name="nombre" ngModel>
+
+    <label>Apellidos</label>
+    <input type="text" name="apellidos" ngModel>
+
+    <label>Edad</label>
+    <input type="text" name="edad" ngModel>
+
+    <label>Dirección</label>
+    <input type="text" name="direccion" ngModel>
+
+    <input type="submit" value="Enviar">
+</form>
+
+{{formulario.value | json}}
