@@ -1,0 +1,17 @@
+.container {
+    margin-top: 20px;
+}
+
+/* Cuando el campo es válido y lo hemos tocado */
+input.ng-valid.ng-touched {
+    border: 1px solid green;
+}
+
+/* Cuando el campo es inválido y lo hemos tocado */
+input.ng-invalid.ng-touched {
+    border: 1px solid red;
+}
+
+.error {
+    color:red;
+}
