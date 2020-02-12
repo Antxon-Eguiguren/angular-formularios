@@ -1,0 +1,163 @@
+<form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+
+    <div class="form-group">
+        <label>Nombre</label>
+        <div class="row">
+            <div class="col-11">
+                <input type="text" class="form-control" formControlName="nombre">
+            </div>
+            <div class="col-1">
+                <img *ngIf="formulario.controls.nombre.valid && formulario.controls.nombre.dirty"
+                    src="https://mallaventura.pe/santaanita/wp-content/uploads/sites/2/2019/09/check-verde-1.png"
+                    width="40" height="40">
+            </div>
+        </div>
+
+        <p class="error" *ngIf="formulario.controls.nombre.errors?.required && formulario.controls.nombre.touched">
+            El campo Nombre es obligatorio.
+        </p>
+        <p class="error" *ngIf="formulario.controls.nombre.errors?.maxlength && formulario.controls.nombre.dirty">
+            El campo Nombre no puede tener más de {{formulario.controls.nombre.errors.maxlength.requiredLength}}
+            caracteres y has escrito
+            {{formulario.controls.nombre.errors.maxlength.actualLength}} caracteres.
+        </p>
+    </div>
+
+    <div class="form-group">
+        <label>Apellidos</label>
+        <div class="row">
+            <div class="col-11">
+                <input type="text" class="form-control" formControlName="apellidos">
+            </div>
+            <div class="col-1">
+                <img *ngIf="formulario.controls.apellidos.valid && formulario.controls.apellidos.dirty"
+                    src="https://mallaventura.pe/santaanita/wp-content/uploads/sites/2/2019/09/check-verde-1.png"
+                    width="40" height="40">
+            </div>
+        </div>
+    </div>
+
+    <p class="error" *ngIf="formulario.controls.apellidos.errors?.required && formulario.controls.apellidos.touched">
+        El campo Apellidos es obligatorio.
+    </p>
+
+    <div class="form-group">
+        <label>Email</label>
+        <div class="row">
+            <div class="col-11">
+                <input type="text" class="form-control" formControlName="email">
+            </div>
+            <div class="col-1">
+                <img *ngIf="formulario.controls.email.valid && formulario.controls.email.dirty"
+                    src="https://mallaventura.pe/santaanita/wp-content/uploads/sites/2/2019/09/check-verde-1.png"
+                    width="40" height="40">
+            </div>
+        </div>
+
+        <p class="error" *ngIf="formulario.controls.email.errors?.required && formulario.controls.email.touched">
+            El campo Email es obligatorio.
+        </p>
+        <p class="error" *ngIf="formulario.controls.email.errors?.pattern && formulario.controls.email.touched">
+            El campo Email debe ser un email válido.
+        </p>
+    </div>
+
+    <div class="form-group">
+        <label>Edad</label>
+        <div class="row">
+            <div class="col-11">
+                <input type="text" class="form-control" formControlName="edad">
+            </div>
+            <div class="col-1">
+                <img *ngIf="formulario.controls.edad.valid && formulario.controls.edad.dirty"
+                    src="https://mallaventura.pe/santaanita/wp-content/uploads/sites/2/2019/09/check-verde-1.png"
+                    width="40" height="40">
+            </div>
+        </div>
+
+        <p class="error" *ngIf="formulario.controls.edad.errors?.required && formulario.controls.edad.touched">
+            El campo Edad es obligatorio.
+        </p>
+        <p class="error" *ngIf="formulario.controls.edad.errors?.edadvalidator && formulario.controls.edad.touched">
+            El campo Edad tiene que estar entre {{formulario.controls.edad.errors.edadvalidator.min}} y
+            {{formulario.controls.edad.errors.edadvalidator.max}} años.
+        </p>
+    </div>
+
+    <div class="form-group">
+        <label>DNI</label>
+        <div class="row">
+            <div class="col-11">
+                <input type="text" class="form-control" formControlName="dni">
+            </div>
+            <div class="col-1">
+                <img *ngIf="formulario.controls.dni.valid && formulario.controls.dni.dirty"
+                    src="https://mallaventura.pe/santaanita/wp-content/uploads/sites/2/2019/09/check-verde-1.png"
+                    width="40" height="40">
+            </div>
+        </div>
+
+        <p class="error" *ngIf="formulario.controls.dni.errors?.required && formulario.controls.dni.touched">
+            El campo DNI es obligatorio.
+        </p>
+        <p class="error" *ngIf="formulario.controls.dni.errors?.dnivalidator && formulario.controls.dni.touched">
+            {{formulario.controls.dni.errors.dnivalidator.msg}}
+        </p>
+    </div>
+
+    <div class="form-group">
+        <label>Password</label>
+        <div class="row">
+            <div class="col-11">
+                <input type="password" class="form-control" formControlName="password">
+            </div>
+            <div class="col-1">
+                <img *ngIf="formulario.controls.password.valid && formulario.controls.password.dirty"
+                    src="https://mallaventura.pe/santaanita/wp-content/uploads/sites/2/2019/09/check-verde-1.png"
+                    width="40" height="40">
+            </div>
+        </div>
+
+        <p class="error" *ngIf="formulario.controls.password.errors?.required && formulario.controls.password.touched">
+            El campo Password es obligatorio.
+        </p>
+        <p class="error" *ngIf="formulario.controls.password.errors?.pattern && formulario.controls.password.touched">
+            El campo Password tiene que contener entre 4 y 8 caracteres y al menos uno de ellos debe ser numérico.
+        </p>
+    </div>
+
+    <div class="form-group">
+        <label>Repetir Password</label>
+        <div class="row">
+            <div class="col-11">
+                <input type="password" class="form-control" formControlName="repite_password">
+            </div>
+            <div class="col-1">
+                <img *ngIf="formulario.controls.repite_password.valid && formulario.controls.repite_password.dirty"
+                    src="https://mallaventura.pe/santaanita/wp-content/uploads/sites/2/2019/09/check-verde-1.png"
+                    width="40" height="40">
+            </div>
+        </div>
+
+        <p class="error"
+            *ngIf="formulario.controls.repite_password.errors?.required && formulario.controls.repite_password.touched">
+            El campo Repite Password es obligatorio.
+        </p>
+        <p class="error"
+            *ngIf="formulario.controls.repite_password.errors?.pattern && formulario.controls.repite_password.touched">
+            El campo Repite Password tiene que contener entre 4 y 8 caracteres y al menos uno de ellos debe ser
+            numérico.
+        </p>
+    </div>
+
+    <p class="error" *ngIf="formulario.errors?.passwordvalidator && formulario.controls.repite_password.touched">
+        Los campos Password y Repite Password deben ser iguales.
+    </p>
+
+    <div class="row">
+        <div class="col-11">
+            <input type="submit" value="Enviar" class="btn btn-block btn-success" [disabled]="!formulario.valid">
+        </div>
+    </div>
+
+</form>

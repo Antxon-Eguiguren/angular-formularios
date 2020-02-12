@@ -10,11 +10,21 @@
     <p>Campo Nombre Touched: {{ formulario.controls.nombre.touched }}</p>
     <p>Campo Nombre Dirty: {{ formulario.controls.nombre.dirty }}</p>
 </div>
+
 <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
 
     <div class="form-group">
         <label>Nombre</label>
-        <input type="text" class="form-control" formControlName="nombre">
+        <div class="row">
+            <div class="col-11">
+                <input type="text" class="form-control" formControlName="nombre">
+            </div>
+            <div class="col-1">
+                <img *ngIf="formulario.controls.nombre.valid && formulario.controls.nombre.touched"
+                    src="https://mallaventura.pe/santaanita/wp-content/uploads/sites/2/2019/09/check-verde-1.png"
+                    width="40" height="40">
+            </div>
+        </div>
         {{formulario.controls.nombre.errors | json}}
         <p class="error" *ngIf="formulario.controls.nombre.errors?.required && formulario.controls.nombre.touched">
             El campo nombre es obligatorio.
@@ -80,11 +90,10 @@
         <input type="password" class="form-control" formControlName="repite_password">
         {{formulario.controls.repite_password.errors | json}}
     </div>
-
     <p class="error" *ngIf="formulario.errors?.passwordvalidator && formulario.controls.repite_password.touched">
         Los campos de contraseña deben ser iguales.
     </p>
     {{formulario.errors | json}}
 
-    <input type=" submit" value="Enviar" class="btn btn-block btn-success" [disabled]="!formulario.valid">
+    <input type="submit" value="Enviar" class="btn btn-block btn-success" [disabled]="!formulario.valid">
 </form>
