@@ -10,7 +10,7 @@
     <p>Campo Nombre Touched: {{ formulario.controls.nombre.touched }}</p>
     <p>Campo Nombre Dirty: {{ formulario.controls.nombre.dirty }}</p>
 </div>
-<form [formGroup]="formulario" (ngSubmit)="manejarSubmit()">
+<form [formGroup]="formulario" (ngSubmit)="onSubmit()">
 
     <div class="form-group">
         <label>Nombre</label>
@@ -19,8 +19,9 @@
         <p class="error" *ngIf="formulario.controls.nombre.errors?.required && formulario.controls.nombre.touched">
             El campo nombre es obligatorio.
         </p>
-        <p class="error" *ngIf="formulario.controls.nombre.errors?.maxlength && formulario.controls.nombre.touched">
-            El campo nombre no puede tener más de 15 caracteres y has escrito
+        <p class="error" *ngIf="formulario.controls.nombre.errors?.maxlength && formulario.controls.nombre.dirty">
+            El campo nombre no puede tener más de {{formulario.controls.nombre.errors.maxlength.requiredLength}}
+            caracteres y has escrito
             {{formulario.controls.nombre.errors.maxlength.actualLength}} caracteres.
         </p>
     </div>
@@ -28,6 +29,7 @@
     <div class="form-group">
         <label>Apellidos</label>
         <input type="text" class="form-control" formControlName="apellidos">
+        {{formulario.controls.apellidos.errors | json}}
     </div>
 
     <div class="form-group">
@@ -45,23 +47,44 @@
     <div class="form-group">
         <label>Edad</label>
         <input type="text" class="form-control" formControlName="edad">
+        {{formulario.controls.edad.errors | json}}
+        <p class="error" *ngIf="formulario.controls.edad.errors?.required && formulario.controls.edad.touched">
+            El campo edad es obligatorio.
+        </p>
+        <p class="error" *ngIf="formulario.controls.edad.errors?.edadvalidator && formulario.controls.edad.dirty">
+            El campo edad tiene que estar entre {{formulario.controls.edad.errors.edadvalidator.min}} y
+            {{formulario.controls.edad.errors.edadvalidator.max}} años.
+        </p>
     </div>
 
     <div class="form-group">
         <label>DNI</label>
         <input type="text" class="form-control" formControlName="dni">
+        {{formulario.controls.dni.errors | json}}
+        <p class="error" *ngIf="formulario.controls.dni.errors?.required && formulario.controls.dni.touched">
+            El campo DNI es obligatorio.
+        </p>
+        <p class="error" *ngIf="formulario.controls.dni.errors?.dnivalidator && formulario.controls.dni.touched">
+            {{formulario.controls.dni.errors.dnivalidator.msg}}
+        </p>
     </div>
 
     <div class="form-group">
         <label>Password</label>
         <input type="password" class="form-control" formControlName="password">
+        {{formulario.controls.password.errors | json}}
     </div>
 
     <div class="form-group">
         <label>Repetir Password</label>
         <input type="password" class="form-control" formControlName="repite_password">
+        {{formulario.controls.repite_password.errors | json}}
     </div>
 
-    <input type="submit" value="Enviar" class="btn btn-block btn-success" [disabled]="!formulario.valid">
+    <p class="error" *ngIf="formulario.errors?.passwordvalidator && formulario.controls.repite_password.touched">
+        Los campos de contraseña deben ser iguales.
+    </p>
+    {{formulario.errors | json}}
 
+    <input type=" submit" value="Enviar" class="btn btn-block btn-success" [disabled]="!formulario.valid">
 </form>
